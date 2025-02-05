@@ -118,10 +118,24 @@ const projects = [
     github_link: "https://github.com/jadrsamara/Multimedia"
   },
   {
-    title: "Windows Manager for Windows",
+    title: "WinLayoutSaver for Windows",
     description: "A Python app using ctypes to call functions in DLLs or shared libraries, enabling automated management of multiple application window placements and saving/loading configurations. Multi-screen setup compatibility.",
     image: "https://user-images.githubusercontent.com/77105910/180623331-3d7f4f3b-b3df-47b4-b140-06589ef6a6de.png",
     github_link: "https://github.com/jadrsamara/Windows-Manager",
+    isHidden: true,
+  },
+  {
+    title: "Smart Farming System with Real-Time Analytics Dashboard",
+    description: "Developed a smart greenhouse system utilizing IoT to monitor and control environmental conditions, enhancing agricultural efficiency.",
+    image: "https://paliot.rf.gd/assets/img/smart_greenhouse.png",
+    link: "https://paliot.rf.gd/",
+    github_link: "https://github.com/jadrsamara/Paliot"
+  },
+  {
+    title: "AI-Genetic Algorithms - Graduation Projects Distribution",
+    description: "Developed an AI-driven system to automate the distribution of graduation projects using Genetic Algorithms, optimizing student-project matching based on preferences.",
+    image: "https://raw.githubusercontent.com/jadrsamara/AI-Genetic-algorithms/main/assets/10.png",
+    github_link: "https://github.com/jadrsamara/AI-Genetic-algorithms",
     isHidden: true,
   },
 ]

@@ -127,7 +127,7 @@ const projects = [
   {
     title: "Smart Farming System with Real-Time Analytics Dashboard",
     description: "Developed a smart greenhouse system utilizing IoT to monitor and control environmental conditions, enhancing agricultural efficiency.",
-    image: "https://paliot.rf.gd/assets/img/smart_greenhouse.png",
+    image: "https://raw.githubusercontent.com/jadrsamara/Paliot/refs/heads/main/smart_greenhouse.png",
     link: "https://paliot.rf.gd/",
     github_link: "https://github.com/jadrsamara/Paliot"
   },

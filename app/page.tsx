@@ -123,15 +123,19 @@ export default function Home() {
                           <ArrowUpRight size={14} />
                         </a>
                       )}
-                      <a
-                        href={project.github_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-muted-foreground hover:text-foreground"
-                      >
-                        <Github size={14} />
-                        Source
-                      </a>
+                      
+                      {/* Check if github_link exists before rendering the Source link */}
+                      {project.github_link && (
+                        <a
+                          href={project.github_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-muted-foreground hover:text-foreground"
+                        >
+                          <Github size={14} />
+                          Source
+                        </a>
+                      )}
                     </div>
                   </div>
                 </article>
@@ -205,7 +209,7 @@ const projects = [
       "A full-stack expense tracking application to help users monitor personal finances efficiently. Add expenses manually or snap a photo of a receipt for automatic entry via AI-powered OCR, view monthly and yearly reports, manage recurring bills, and sync failed uploads for data reliability.",
     image: "https://www.expenssly.com/metadata.png",
     link: "https://www.expenssly.com/",
-    isHidden: true,
+    // github_link removed to hide the Source button
     status: "Live",
     tags: ["FastAPI", "Next.js", "Gemini OCR", "Postgres", "Vercel"],
   },

@@ -1,95 +1,125 @@
 "use client"
 
 import Link from "next/link"
-import { Github, Linkedin, Menu } from "lucide-react"
-import { useState } from "react"
+import { Github, Linkedin, Menu, X } from "lucide-react"
+import { useEffect, useState } from "react"
+
+const navLinks = [
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
+]
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-90 shadow-sm">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-gray-800">
+        <Link href="/" className="text-xl font-bold tracking-tight text-foreground">
           Jad Samara
         </Link>
+
         <nav className="hidden md:block">
-          <ul className="flex space-x-6">
-            <li>
-              <Link href="#about" className="text-gray-600 hover:text-gray-900">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href="#projects" className="text-gray-600 hover:text-gray-900">
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link href="#contact" className="text-gray-600 hover:text-gray-900">
-                Contact
-              </Link>
-            </li>
+          <ul className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
-        <div className="hidden md:flex space-x-4">
+
+        <div className="hidden md:flex items-center gap-2">
           <a
             href="https://github.com/jadrsamara"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900"
+            aria-label="GitHub"
+            className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
           >
-            <Github size={24} />
+            <Github size={20} />
           </a>
           <a
             href="https://www.linkedin.com/in/jadrsamara/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900"
+            aria-label="LinkedIn"
+            className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
           >
-            <Linkedin size={24} />
+            <Linkedin size={20} />
           </a>
         </div>
-        <button className="md:hidden text-gray-600 hover:text-gray-900" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <Menu size={24} />
+
+        <button
+          className="md:hidden p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
-      {isMenuOpen && (
-        <div className="md:hidden bg-white py-2">
-          <nav className="container mx-auto px-4">
-            <ul className="flex flex-col space-y-2">
-              <li>
+
+      <div
+        className={`md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+          isMenuOpen ? "max-h-64" : "max-h-0"
+        }`}
+      >
+        <nav className="bg-background/95 backdrop-blur-md border-b border-border">
+          <ul className="container mx-auto px-4 py-2 flex flex-col">
+            {navLinks.map((link) => (
+              <li key={link.href}>
                 <Link
-                  href="#about"
-                  className="text-gray-600 hover:text-gray-900 block py-2"
+                  href={link.href}
+                  className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  About
+                  {link.label}
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="#projects"
-                  className="text-gray-600 hover:text-gray-900 block py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#contact"
-                  className="text-gray-600 hover:text-gray-900 block py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      )}
+            ))}
+            <li className="flex items-center gap-2 py-3">
+              <a
+                href="https://github.com/jadrsamara"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
+              >
+                <Github size={20} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/jadrsamara/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
+              >
+                <Linkedin size={20} />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   )
 }
-

@@ -12,37 +12,53 @@ export default function Home() {
         <section id="about" className="relative overflow-hidden bg-grid">
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" />
           <div className="container relative mx-auto px-4 pt-32 pb-20">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
-              Site Reliability Engineer
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-3xl text-balance">
-              Hi, I'm Jad Samara. I build scalable, reliable systems — and the occasional side project.
-            </h1>
-            <div className="mt-8 max-w-2xl space-y-4 text-lg leading-relaxed text-muted-foreground">
-              <p>
-                I'm passionate about building scalable, high-performing, and reliable systems. Currently,
-                I work at{" "}
-                <a
-                  href="https://harri.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
-                >
-                  Harri
-                </a>
-                , where I focus on ensuring system uptime, automating operations, and optimizing cloud costs
-                through FinOps. My expertise spans cloud infrastructure, observability, performance tuning,
-                and automation.
-              </p>
-              <p>
-                Beyond my professional role, I enjoy experimenting with new technologies and building
-                personal projects that blend reliability engineering with creative problem-solving —
-                from finance tracking apps to adaptive streaming pipelines and automation tools.
-              </p>
-              <p>
-                I'm always looking to connect with like-minded professionals, share knowledge, and take on
-                new challenges. Feel free to check out my work or reach out!
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
+                  Site Reliability Engineer
+                </p>
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-3xl text-balance">
+                  Hi, I'm Jad Samara. I build scalable, reliable systems — and the occasional side project.
+                </h1>
+                <div className="mt-8 max-w-2xl space-y-4 text-lg leading-relaxed text-muted-foreground">
+                  <p>
+                    I'm passionate about building scalable, high-performing, and reliable systems. Currently,
+                    I work at{" "}
+                    <a
+                      href="https://harri.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+                    >
+                      Harri
+                    </a>
+                    , where I focus on ensuring system uptime, automating operations, and optimizing cloud
+                    costs through FinOps. My expertise spans cloud infrastructure, observability, performance
+                    tuning, and automation.
+                  </p>
+                  <p>
+                    Beyond my professional role, I enjoy experimenting with new technologies and building
+                    personal projects that blend reliability engineering with creative problem-solving —
+                    from finance tracking apps to adaptive streaming pipelines and automation tools.
+                  </p>
+                  <p>
+                    I'm always looking to connect with like-minded professionals, share knowledge, and take
+                    on new challenges. Feel free to check out my work or reach out!
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
+                <div
+                  aria-hidden
+                  className="absolute -inset-8 -z-10 rounded-full bg-gradient-to-tr from-primary/25 via-primary/10 to-transparent blur-3xl"
+                />
+                <img
+                  src="/jad.png"
+                  alt="Jad Samara"
+                  className="relative z-10 w-full h-auto object-contain drop-shadow-2xl"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -189,7 +205,6 @@ const projects = [
       "A full-stack expense tracking application to help users monitor personal finances efficiently. Add expenses manually or snap a photo of a receipt for automatic entry via AI-powered OCR, view monthly and yearly reports, manage recurring bills, and sync failed uploads for data reliability.",
     image: "https://www.expenssly.com/metadata.png",
     link: "https://www.expenssly.com/",
-    github_link: "https://github.com/jadrsamara/expenssly",
     status: "Live",
     tags: ["FastAPI", "Next.js", "Gemini OCR", "Postgres", "Vercel"],
   },

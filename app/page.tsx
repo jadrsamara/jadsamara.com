@@ -18,7 +18,7 @@ export default function Home() {
                   Site Reliability Engineer
                 </p>
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-3xl text-balance">
-                  Hi, I'm Jad Samara. I build scalable, reliable systems — and the occasional side project.
+                  Hi, I'm Jad Samara. I build scalable, reliable systems and love crafting side projects.
                 </h1>
                 <div className="mt-8 max-w-2xl space-y-4 text-lg leading-relaxed text-muted-foreground">
                   <p>
@@ -38,8 +38,8 @@ export default function Home() {
                   </p>
                   <p>
                     Beyond my professional role, I enjoy experimenting with new technologies and building
-                    personal projects that blend reliability engineering with creative problem-solving —
-                    from finance tracking apps to adaptive streaming pipelines and automation tools.
+                    personal projects that blend reliability engineering with creative problem-solving. My focus
+                    ranges from finance tracking apps to adaptive streaming pipelines and automation tools.
                   </p>
                   <p>
                     I'm always looking to connect with like-minded professionals, share knowledge, and take
@@ -205,6 +205,7 @@ const projects = [
       "A full-stack expense tracking application to help users monitor personal finances efficiently. Add expenses manually or snap a photo of a receipt for automatic entry via AI-powered OCR, view monthly and yearly reports, manage recurring bills, and sync failed uploads for data reliability.",
     image: "https://www.expenssly.com/metadata.png",
     link: "https://www.expenssly.com/",
+    isHidden: true,
     status: "Live",
     tags: ["FastAPI", "Next.js", "Gemini OCR", "Postgres", "Vercel"],
   },
@@ -225,6 +226,7 @@ const projects = [
     image: "https://raw.githubusercontent.com/jadrsamara/Multimedia/refs/heads/main/thumbnail.png",
     link: "https://jadrsamara.github.io/Multimedia/",
     github_link: "https://github.com/jadrsamara/Multimedia",
+    status: "Live",
     tags: ["FFMPEG", "MP4Box", "DASH"],
   },
   {

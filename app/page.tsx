@@ -18,7 +18,7 @@ export default function Home() {
                   Site Reliability Engineer
                 </p>
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground max-w-3xl text-balance">
-                  Hi, I'm Jad Samara. I build scalable, reliable systems and love crafting side projects.
+                  Hi, I'm Jad Samara. I build scalable, reliable systems and the occasional side projects.
                 </h1>
                 <div className="mt-8 max-w-2xl space-y-4 text-lg leading-relaxed text-muted-foreground">
                   <p>
@@ -38,8 +38,7 @@ export default function Home() {
                   </p>
                   <p>
                     Beyond my professional role, I enjoy experimenting with new technologies and building
-                    personal projects that blend reliability engineering with creative problem-solving. My focus
-                    ranges from finance tracking apps to adaptive streaming pipelines and automation tools.
+                    personal projects that blend reliability engineering with creative problem-solving. From finance tracking apps to adaptive streaming pipelines and automation tools.
                   </p>
                   <p>
                     I'm always looking to connect with like-minded professionals, share knowledge, and take

@@ -1,125 +1,105 @@
 "use client"
 
 import Link from "next/link"
-import { Github, Linkedin, Menu, X } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
+import { useTheme } from "next-themes"
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { href: "#about", label: "about" },
+  { href: "#projects", label: "projects" },
+  { href: "#contact", label: "contact" },
 ]
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
+    setMounted(true)
   }, [])
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark")
+  }
+
+  const closeMenu = () => setMenuOpen(false)
+
+  const isDark = mounted && theme === "dark"
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent border-b border-transparent"
-      }`}
+    <nav
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 30,
+        background: "color-mix(in srgb, var(--bg) 90%, transparent)",
+        backdropFilter: "blur(8px)",
+        borderBottom: "1px solid var(--border-soft)",
+      }}
     >
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold tracking-tight text-foreground">
-          Jad Samara
+      <div className="nav-wrap">
+        <Link href="/" className="logo" style={{ textDecoration: "none" }}>
+          JS<span>•</span>
         </Link>
 
-        <nav className="hidden md:block">
-          <ul className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </Link>
-              </li>
+        <div className="navright">
+          <div className="navlinks">
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href}>
+                {l.label}
+              </a>
             ))}
-          </ul>
-        </nav>
+          </div>
 
-        <div className="hidden md:flex items-center gap-2">
-          <a
-            href="https://github.com/jadrsamara"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
+          <button
+            className="theme-btn"
+            type="button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            suppressHydrationWarning
           >
-            <Github size={20} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/jadrsamara/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
+            {/* Sun icon — shown in dark mode */}
+            <svg
+              className="sun-icon"
+              viewBox="0 0 24 24"
+              style={{ display: isDark ? "block" : "none", width: 16, height: 16, fill: "currentColor" }}
+            >
+              <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-12.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41zm-12.37 12.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41z" />
+            </svg>
+            {/* Moon icon — shown in light mode */}
+            <svg
+              className="moon-icon"
+              viewBox="0 0 24 24"
+              style={{ display: isDark ? "none" : "block", width: 16, height: 16, fill: "currentColor" }}
+            >
+              <path d="M12.3 2a10 10 0 0 0-1.9 19.8 10 10 0 0 0 11.5-11.5 10.2 10.2 0 0 1-9.6-8.3z" />
+            </svg>
+          </button>
+
+          <button
+            className="burger"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
           >
-            <Linkedin size={20} />
-          </a>
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
 
-        <button
-          className="md:hidden p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
-
-      <div
-        className={`md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-          isMenuOpen ? "max-h-64" : "max-h-0"
-        }`}
-      >
-        <nav className="bg-background/95 backdrop-blur-md border-b border-border">
-          <ul className="container mx-auto px-4 py-2 flex flex-col">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="block py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </li>
+        {menuOpen && (
+          <div className="mobile-panel">
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} onClick={closeMenu}>
+                {l.label}
+              </a>
             ))}
-            <li className="flex items-center gap-2 py-3">
-              <a
-                href="https://github.com/jadrsamara"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
-              >
-                <Github size={20} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/jadrsamara/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="p-2 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
-              >
-                <Linkedin size={20} />
-              </a>
-            </li>
-          </ul>
-        </nav>
+          </div>
+        )}
       </div>
-    </header>
+    </nav>
   )
 }
